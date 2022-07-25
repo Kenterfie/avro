@@ -1,5 +1,7 @@
 package avro_test
 
+import "time"
+
 type TestInterface interface {
 	SomeFunc() int
 }
@@ -7,6 +9,14 @@ type TestInterface interface {
 type TestRecord struct {
 	A int64  `avro:"a"`
 	B string `avro:"b"`
+}
+
+type PacketInfoRecord struct {
+	payload   []byte     `avro:"payload"`
+	length    int        `avro:"length"`
+	timestamp *time.Time `avro:"timestamp"`
+	comment   string     `avro:"comment"`
+	action    string     `avro:"action"`
 }
 
 func (*TestRecord) SomeFunc() int {
